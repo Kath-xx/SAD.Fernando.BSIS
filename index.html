@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Pizza</title>
+    <!-- 1. Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 3. Custom Styles -->
+    <style>
+        /* Use Inter as the default font */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Simple transition for page fades */
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body background="c:\Users\Admin\Downloads\png.jpg">
+    
+
+    <!-- 
+      This is a container for all pages.
+      We will show/hide these divs using JavaScript.
+    -->
+
+    <!-- =======================
+         LOGIN PAGE
+    ======================== -->
+    <div id="loginPage" class="page min-h-screen flex items-center justify-center">
+        <body background="c:\Users\Admin\Downloads\png.jpg">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md">
+
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Welcome!</h2>
+            <p class="text-center text-gray-600 mb-6">Log in to order delicious food.</p>
+            
+            <form id="loginForm">
+                <div class="mb-4">
+                    <label for="loginUsername" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                    <input type="text" id="loginUsername" required class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="username">
+                </div>
+                <div class="mb-6">
+                    <label for="loginPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" id="loginPassword" required class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="••••••••">
+                </div>
+                
+                <button type="submit" class="w-full bg-red-600 text-white py-2.5 rounded-lg font-semibold shadow-lg hover:bg-red-700 transition duration-300">
+                    Log In
+                </button>
+            </form>
+            
+            <p class="text-center text-sm text-gray-600 mt-6">
+                Don't have an account? 
+                <a href="#" id="goToRegister" class="font-medium text-red-600 hover:text-red-500">
+                    Sign up
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <!-- =======================
+         REGISTER PAGE
+    ======================== -->
+    <div id="registerPage" class="page min-h-screen flex items-center justify-center">
+        <body background="c:\Users\Admin\Downloads\png.jpg">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Create Account</h2>
+            <p class="text-center text-gray-600 mb-6">Get started with Top Pizza!</p>
+            
+            <form id="registerForm">
+                <div class="mb-4">
+                    <label for="regFullname" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" id="regFullname" required class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500">
+                </div>
+                <div class="mb-4">
+                    <label for="regEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" id="regEmail" required class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500">
+                </div>
+                <div class="mb-4">
+                    <label for="regUsername" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                    <input type="text" id="regUsername" required class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500">
+                </div>
+                <div class="mb-4">
+                    <label for="regPassword" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" id="regPassword" minlength="6" required class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Min. 6 characters">
+                </div>
+                 <div class="mb-6">
+                    <label class="flex items-center">
+                        <input type="checkbox" id="regIsAdmin" class="rounded border-gray-300 text-red-600 shadow-sm focus:ring-red-500">
+                        <span class="ml-2 text-sm text-gray-600">Register as Admin (Code:)</span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="w-full bg-red-600 text-white py-2.5 rounded-lg font-semibold shadow-lg hover:bg-red-700 transition duration-300">
+                    Create Account
+                </button>
+            </form>
+            
+            <p class="text-center text-sm text-gray-600 mt-6">
+                Already have an account? 
+                <a href="#" id="goToLogin" class="font-medium text-red-600 hover:text-red-500">
+                    Log in
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <!-- =======================
+         USER DASHBOARD PAGE
+    ======================== -->
+    <div id="userDashboardPage" class="page min-h-screen bg-gray-100">
+        <!-- User Header -->
+        <header class="bg-white shadow-md sticky top-0 z-10">
+            <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="text-2xl font-bold text-red-600">Top Pizza</div>
+                <div class="flex items-center space-x-4">
+                    <span id="userWelcome" class="text-gray-700 font-medium hidden sm:block">Welcome!</span>
+                    <button id="userLogout" class="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition duration-300">
+                        Logout
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- User Content -->
+        <main class="container mx-auto p-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Menu Column -->
+            <div class="lg:col-span-2">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Menu</h2>
+                <div id="menuContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Menu items will be injected here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Cart Column -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-2xl shadow-xl p-6 sticky top-24">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Your Cart</h2>
+                    <div id="cartContainer" class="max-h-64 overflow-y-auto space-y-4">
+                        <!-- Cart items will be injected here -->
+                        <p class="text-gray-500 text-center">Your cart is empty.</p>
+                    </div>
+                    
+                    <div class="border-t pt-4 mt-4">
+                        <div class="flex justify-between items-center text-lg font-bold mb-4">
+                            <span>Total:</span>
+                            <span id="cartTotal" class="text-red-600">&#8369;0.00</span>
+                        </div>
+                        <button id="confirmOrderBtn" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold shadow-lg hover:bg-green-700 transition duration-300 disabled:bg-gray-400">
+                            Confirm Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- =======================
+         ADMIN DASHBOARD PAGE
+    ======================== -->
+    <div id="adminDashboardPage" class="page min-h-screen flex">
+        <!-- Admin Sidebar -->
+        <nav class="w-64 bg-gray-800 text-white p-6 flex flex-col fixed h-full">
+            <div class="text-2xl font-bold text-white mb-8">Admin Panel</div>
+            <ul class="space-y-2">
+                <li>
+                    <a href="#" id="adminTabOrders" class="tab-link block px-4 py-2 rounded-lg bg-gray-700">View Orders</a>
+                </li>
+                <li>
+                    <a href="#" id="adminTabUsers" class="tab-link block px-4 py-2 rounded-lg hover:bg-gray-700">Manage Users</a>
+                </li>
+            </ul>
+            <div class="mt-auto">
+                <span id="adminWelcome" class="block text-sm text-gray-400 mb-2">Welcome!</span>
+                <button id="adminLogout" class="w-full bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition duration-300">
+                    Logout
+                </button>
+            </div>
+        </nav>
+
+        <!-- Admin Content -->
+        <main class="flex-1 ml-64 p-8 bg-gray-100">
+            <!-- Orders Tab Content -->
+            <div id="adminOrdersContent" class="admin-tab-content">
+                <h1 class="text-3xl font-bold text-gray-800 mb-6">Recent Orders</h1>
+                <div id="adminOrdersContainer" class="bg-white rounded-2xl shadow-xl p-6">
+                    <!-- Orders will be injected here -->
+                    <p class="text-gray-500">No orders have been placed yet.</p>
+                </div>
+            </div>
+            
+            <!-- Users Tab Content -->
+            <div id="adminUsersContent" class="admin-tab-content" style="display: none;">
+                <h1 class="text-3xl font-bold text-gray-800 mb-6">User Management</h1>
+                <div id="adminUsersContainer" class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Full Name</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Username</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminUsersBody" class="bg-white divide-y divide-gray-200">
+                            <!-- User rows will be injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- =======================
+         CUSTOM ALERT MODAL
+    ======================== -->
+    <div id="alertModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" style="display: none;">
+        <div class="bg-white p-6 rounded-2xl shadow-xl w-full max-w-sm text-center">
+            <h3 id="alertTitle" class="text-xl font-bold mb-2"></h3>
+            <p id="alertMessage" class="text-gray-600 mb-6"></p>
+            <button id="alertClose" class_base="bg-red-600" class="w-full text-white py-2 px-4 rounded-lg font-semibold transition duration-300">
+                Close
+            </button>
+        </div>
+    </div>
+
+
+    <!-- =======================
+         JAVASCRIPT LOGIC
+    ======================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- STATE & CONSTANTS ---
+            
+            // Menu Items Database
+            const menuItems = [
+                { id: 1, name: 'Tacos Pizza', price: 350, img: 'OIP.jpeg' },
+                { id: 2, name: 'Classssic Beef Burger', price: 180, img: 'OIP (1).jpeg' },
+                { id: 3, name: 'Large Fries', price: 90, img: 'OIP (2).jpeg' },
+                { id: 4, name: 'Beef Tacos (3pcs)', price: 220, img: 'OIP (3).jpeg' },
+                { id: 5, name: 'Caesar Salad', price: 250, img: 'OIP (4).jpeg' },
+                { id: 6, name: 'Pepperoni Pizza', price: 420, img: 'OIP (5).jpeg' }
+            ];
+
+            // App-wide state
+            let currentUser = null;
+            let cart = []; // Array of { ...menuItem, quantity: x }
+
+            // --- LOCAL STORAGE HELPERS ---
+
+            // Get all users from localStorage
+            function getUsers() {
+                return JSON.parse(localStorage.getItem('quickbite_users') || '[]');
+            }
+
+            // Save all users to localStorage
+            function saveUsers(users) {
+                localStorage.setItem('quickbite_users', JSON.stringify(users));
+            }
+
+            // Get current user from localStorage
+            function getLoggedInUser() {
+                return JSON.parse(localStorage.getItem('quickbite_currentUser'));
+            }
+
+            // Save current user to localStorage
+            function setLoggedInUser(user) {
+                if (user) {
+                    localStorage.setItem('quickbite_currentUser', JSON.stringify(user));
+                } else {
+                    localStorage.removeItem('quickbite_currentUser');
+                }
+                currentUser = user;
+            }
+
+            // Get all orders from localStorage
+            function getOrders() {
+                return JSON.parse(localStorage.getItem('quickbite_orders') || '[]');
+            }
+
+            // Save all orders to localStorage
+            function saveOrders(orders) {
+                localStorage.setItem('quickbite_orders', JSON.stringify(orders));
+            }
+
+            // --- DOM ELEMENTS ---
+            const pages = {
+                login: document.getElementById('loginPage'),
+                register: document.getElementById('registerPage'),
+                userDashboard: document.getElementById('userDashboardPage'),
+                adminDashboard: document.getElementById('adminDashboardPage')
+            };
+
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const goToRegister = document.getElementById('goToRegister');
+            const goToLogin = document.getElementById('goToLogin');
+            
+            const userLogout = document.getElementById('userLogout');
+            const adminLogout = document.getElementById('adminLogout');
+            const userWelcome = document.getElementById('userWelcome');
+            const adminWelcome = document.getElementById('adminWelcome');
+            
+            const menuContainer = document.getElementById('menuContainer');
+            const cartContainer = document.getElementById('cartContainer');
+            const cartTotalEl = document.getElementById('cartTotal');
+            const confirmOrderBtn = document.getElementById('confirmOrderBtn');
+
+            const adminTabs = {
+                orders: document.getElementById('adminTabOrders'),
+                users: document.getElementById('adminTabUsers')
+            };
+            const adminContents = {
+                orders: document.getElementById('adminOrdersContent'),
+                users: document.getElementById('adminUsersContent')
+            };
+            const adminOrdersContainer = document.getElementById('adminOrdersContainer');
+            const adminUsersBody = document.getElementById('adminUsersBody');
+            
+            const alertModal = document.getElementById('alertModal');
+            const alertTitle = document.getElementById('alertTitle');
+            const alertMessage = document.getElementById('alertMessage');
+            const alertClose = document.getElementById('alertClose');
+
+            // --- PAGE NAVIGATION ---
+            
+            // Function to show a specific page and hide others
+            function showPage(pageId) {
+                Object.values(pages).forEach(page => {
+                    page.style.display = 'none';
+                });
+                if (pages[pageId]) {
+                    pages[pageId].style.display = 'block';
+                    // For flex/grid layouts
+                    if (pageId === 'login' || pageId === 'register' || pageId === 'adminDashboard') {
+                         pages[pageId].style.display = 'flex';
+                    }
+                }
+            }
+            
+            // Custom Alert Function
+            function showAlert(title, message, isSuccess = false) {
+                alertTitle.textContent = title;
+                alertMessage.textContent = message;
+                
+                // Change button color based on message type
+                alertClose.classList.remove('bg-red-600', 'bg-green-600');
+                if (isSuccess) {
+                    alertClose.classList.add('bg-green-600', 'hover:bg-green-700');
+                } else {
+                    alertClose.classList.add('bg-red-600', 'hover:bg-red-700');
+                }
+                
+                alertModal.style.display = 'flex';
+            }
+            alertClose.addEventListener('click', () => {
+                alertModal.style.display = 'none';
+            });
+
+            // --- AUTHENTICATION ---
+
+            function handleRegister(e) {
+                e.preventDefault();
+                const fullname = document.getElementById('regFullname').value;
+                const email = document.getElementById('regEmail').value;
+                const username = document.getElementById('regUsername').value;
+                const password = document.getElementById('regPassword').value;
+                const isAdmin = document.getElementById('regIsAdmin').checked;
+                
+                if (password.length < 6) {
+                    showAlert('Registration Failed', 'Password must be at least 6 characters long.');
+                    return;
+                }
+
+                const users = getUsers();
+                const existingUser = users.find(user => user.username === username);
+
+                if (existingUser) {
+                    showAlert('Registration Failed', 'Username already exists. Please choose another one.');
+                } else {
+                    const newUser = { fullname, email, username, password, isAdmin };
+                    users.push(newUser);
+                    saveUsers(users);
+                    showAlert('Success!', 'Account created successfully. You can now log in.', true);
+                    registerForm.reset();
+                    showPage('login');
+                }
+            }
+            
+            function handleLogin(e) {
+                e.preventDefault();
+                const username = document.getElementById('loginUsername').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                const users = getUsers();
+                const user = users.find(u => u.username === username && u.password === password);
+
+                if (user) {
+                    setLoggedInUser(user);
+                    checkLoginState(); // This will redirect to the correct dashboard
+                } else {
+                    showAlert('Login Failed', 'Invalid username or password.');
+                }
+            }
+
+            function handleLogout() {
+                setLoggedInUser(null);
+                cart = [];
+                showPage('login');
+            }
+
+            // --- USER DASHBOARD ---
+            
+            function renderMenu() {
+                menuContainer.innerHTML = '';
+                menuItems.forEach(item => {
+                    menuContainer.innerHTML += `
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col">
+                            <img src="${item.img}" alt="${item.name}" class="w-full h-48 object-cover">
+                            <div class="p-4 flex flex-col flex-1">
+                                <h3 class="text-xl font-bold text-gray-800">${item.name}</h3>
+                                <p class="text-lg font-semibold text-red-600 mt-1">&#8369;${item.price.toFixed(2)}</p>
+                                <button data-id="${item.id}" class="add-to-cart-btn mt-4 w-full bg-yellow-400 text-gray-900 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition duration-300">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            function renderCart() {
+                cartContainer.innerHTML = '';
+                let total = 0;
+
+                if (cart.length === 0) {
+                    cartContainer.innerHTML = '<p class="text-gray-500 text-center">Your cart is empty.</p>';
+                    confirmOrderBtn.disabled = true;
+                } else {
+                    cart.forEach(item => {
+                        cartContainer.innerHTML += `
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="font-semibold">${item.name}</p>
+                                    <p class="text-sm text-gray-600">&#8369;${item.price.toFixed(2)} x ${item.quantity}</p>
+                                </div>
+                                <p class="font-bold text-gray-800">&#8369;${(item.price * item.quantity).toFixed(2)}</p>
+                            </div>
+                        `;
+                        total += item.price * item.quantity;
+                    });
+                    confirmOrderBtn.disabled = false;
+                }
+                cartTotalEl.textContent = `\u20B1${total.toFixed(2)}`; // \u20B1 is PHP sign
+            }
+            
+            function addToCart(itemId) {
+                const item = menuItems.find(m => m.id === parseInt(itemId));
+                if (!item) return;
+
+                const cartItem = cart.find(c => c.id === item.id);
+                if (cartItem) {
+                    cartItem.quantity++;
+                } else {
+                    cart.push({ ...item, quantity: 1 });
+                }
+                renderCart();
+            }
+            
+            function handleConfirmOrder() {
+                if (cart.length === 0) return;
+                
+                const orders = getOrders();
+                const newOrder = {
+                    id: Date.now().toString(),
+                    user: currentUser.username,
+                    fullname: currentUser.fullname,
+                    items: [...cart],
+                    total: cart.reduce((acc, item) => acc + (item.price * item.quantity), 0),
+                    status: 'Pending',
+                    date: new Date().toLocaleString()
+                };
+                
+                orders.push(newOrder);
+                saveOrders(orders);
+                
+                cart = [];
+                renderCart();
+                
+                showAlert('Order Confirmed!', 'Your order has been placed and is on its way!', true);
+            }
+            
+            function setupUserDashboard() {
+                userWelcome.textContent = `Welcome, ${currentUser.fullname}!`;
+                renderMenu();
+                renderCart();
+            }
+
+            // --- ADMIN DASHBOARD ---
+            
+            function renderAdminOrders() {
+                const orders = getOrders();
+                adminOrdersContainer.innerHTML = '';
+
+                if (orders.length === 0) {
+                    adminOrdersContainer.innerHTML = '<p class="text-gray-500">No orders have been placed yet.</p>';
+                    return;
+                }
+                
+                // Show newest orders first
+                orders.reverse().forEach(order => {
+                    adminOrdersContainer.innerHTML += `
+                        <div class="border-b last:border-b-0 py-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-lg">${order.fullname} (@${order.user})</span>
+                                <span class="font-bold text-lg text-red-600">&#8369;${order.total.toFixed(2)}</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-2">${order.date}</p>
+                            <ul class="list-disc list-inside">
+                                ${order.items.map(item => `<li>${item.name} (x${item.quantity})</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                });
+            }
+            
+            function renderAdminUsers() {
+                const users = getUsers();
+                adminUsersBody.innerHTML = '';
+                
+                users.forEach(user => {
+                    adminUsersBody.innerHTML += `
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${user.fullname}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${user.username}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${user.email}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                ${user.isAdmin 
+                                    ? '<span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Admin</span>' 
+                                    : '<span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">User</span>'
+                                }
+                            </td>
+                        </tr>
+                    `;
+                });
+            }
+            
+            function setupAdminDashboard() {
+                adminWelcome.textContent = `Welcome, ${currentUser.fullname}!`;
+                renderAdminOrders();
+                renderAdminUsers();
+                showAdminTab('orders'); // Show orders by default
+            }
+            
+            function showAdminTab(tabId) {
+                // Hide all content
+                Object.values(adminContents).forEach(content => content.style.display = 'none');
+                // Deactivate all tabs
+                Object.values(adminTabs).forEach(tab => tab.classList.remove('bg-gray-700'));
+                
+                // Show selected content
+                if (adminContents[tabId]) {
+                    adminContents[tabId].style.display = 'block';
+                }
+                // Activate selected tab
+                if (adminTabs[tabId]) {
+                    adminTabs[tabId].classList.add('bg-gray-700');
+                }
+            }
+
+            // --- APP INITIALIZATION ---
+            
+            // Checks login state on page load
+            function checkLoginState() {
+                const user = getLoggedInUser();
+                if (user) {
+                    setLoggedInUser(user);
+                    if (user.isAdmin) {
+                        setupAdminDashboard();
+                        showPage('adminDashboard');
+                    } else {
+                        setupUserDashboard();
+                        showPage('userDashboard');
+                    }
+                } else {
+                    showPage('login');
+                }
+            }
+            
+            // --- EVENT LISTENERS ---
+            
+            // Auth
+            loginForm.addEventListener('submit', handleLogin);
+            registerForm.addEventListener('submit', handleRegister);
+            userLogout.addEventListener('click', handleLogout);
+            adminLogout.addEventListener('click', handleLogout);
+
+            // Page Navigation
+            goToRegister.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('register');
+            });
+            goToLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('login');
+            });
+            
+            // User Dashboard
+            menuContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('add-to-cart-btn')) {
+                    addToCart(e.target.dataset.id);
+                }
+            });
+            confirmOrderBtn.addEventListener('click', handleConfirmOrder);
+
+            // Admin Dashboard
+            adminTabs.orders.addEventListener('click', (e) => {
+                e.preventDefault();
+                renderAdminOrders(); // Refresh orders
+                showAdminTab('orders');
+            });
+            adminTabs.users.addEventListener('click', (e) => {
+                e.preventDefault();
+                renderAdminUsers(); // Refresh users
+                showAdminTab('users');
+            });
+            
+            // Initial App Load
+            checkLoginState();
+        });
+    </script>
+
+</body>
+</html>s
